@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TARSO – Smart Terrace Automation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg-main:linear-gradient(135deg,#e6fff6,#e6f2ff);
+  --bg-section:linear-gradient(135deg,#d9fff1,#e1efff);
+  --card-bg:linear-gradient(135deg,#ffffffcc,#ecfff7cc);
+  --accent:linear-gradient(135deg,#00c9a7,#0077ff);
+  --text:#1f2937;
+  --shadow:0 20px 50px rgba(0,0,0,.15);
+}
+body.dark{
+  --bg-main:linear-gradient(135deg,#0b1f1a,#0b1425);
+  --bg-section:linear-gradient(135deg,#0f2b24,#101a33);
+  --card-bg:linear-gradient(135deg,#0f2a24cc,#101b33cc);
+  --accent:linear-gradient(135deg,#00ffd0,#4aa3ff);
+  --text:#e5f6ff;
+}
+
+*{
+  margin:0;padding:0;box-sizing:border-box;
+  font-family:Poppins,"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg-main);color:var(--text);overflow-x:hidden}
+
+.emoji{position:fixed;font-size:5rem;opacity:.08;pointer-events:none;animation:float 8s ease-in-out infinite alternate}
+.e1{top:15%;left:6%}
+.e2{top:55%;right:6%}
+.e3{bottom:10%;left:40%}
+.e4{top:30%;right:30%}
+@keyframes float{to{transform:translateY(-40px)}}
+
+nav{
+  position:fixed;top:0;width:100%;
+  display:flex;gap:26px;align-items:center;
+  padding:14px 18px;overflow-x:auto;
+  background:linear-gradient(135deg,#ffffffcc,#e1efffcc);
+  backdrop-filter:blur(12px);z-index:1000
+}
+nav a{text-decoration:none;font-weight:600;background:var(--accent);-webkit-background-clip:text;color:transparent}
+.toggle{margin-left:auto;border:none;padding:8px 14px;border-radius:20px;background:var(--accent);color:white;cursor:pointer}
+
+header{
+  min-height:100vh;padding:130px 12%;
+  display:flex;flex-direction:column;justify-content:center;text-align:center
+}
+header h1{font-size:4rem;background:var(--accent);-webkit-background-clip:text;color:transparent}
+header p{font-size:1.3rem;max-width:900px;margin:20px auto;line-height:1.9}
+
+section{
+  padding:120px 12%;
+  opacity:0;transform:translateY(60px);
+  transition:1s
+}
+section.show{opacity:1;transform:translateY(0)}
+section.alt{background:var(--bg-section)}
+
+h2{text-align:center;font-size:2.7rem;margin-bottom:20px;background:var(--accent);-webkit-background-clip:text;color:transparent}
+.desc{max-width:950px;margin:0 auto 50px;text-align:center;line-height:1.9}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:35px}
+.card{
+  background:var(--card-bg);
+  border-radius:24px;padding:34px;
+  box-shadow:var(--shadow);
+  transition:.4s
+}
+.card:hover{transform:translateY(-14px) scale(1.03)}
+
+.counter{font-size:3rem;font-weight:700;background:var(--accent);-webkit-background-clip:text;color:transparent}
+
+.faq p{max-height:0;overflow:hidden;transition:.4s}
+.faq.open p{max-height:200px}
+.faq h3{cursor:pointer}
+
+form{max-width:650px;margin:auto}
+input,textarea{width:100%;padding:15px;margin-bottom:15px;border:none;border-radius:14px}
+button.submit{width:100%;padding:16px;border:none;border-radius:16px;font-weight:600;background:var(--accent);color:white;cursor:pointer}
+
+footer{text-align:center;padding:50px;background:linear-gradient(135deg,#d9fff1,#e1efff)}
+
+@media(max-width:768px){
+  header h1{font-size:2.6rem}
+  section{padding:100px 7%}
+}
+</style>
+</head>
+
+<body>
+
+<div class="emoji e1">🌿</div>
+<div class="emoji e2">🍃</div>
+<div class="emoji e3">🌱</div>
+<div class="emoji e4">🌧️</div>
+
+<nav>
+<a href="#about">About</a>
+<a href="#problem">Problem</a>
+<a href="#working">Working</a>
+<a href="#components">Components</a>
+<a href="#advantages">Advantages</a>
+<a href="#impact">Impact</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+<button class="toggle" onclick="toggleTheme()">🌗</button>
+</nav>
+
+<header>
+<h1>TARSO 🌦️</h1>
+<p>
+TARSO (Terrace Automated Rain and Sun Optimizer) 🌿 is an intelligent automation system that protects terrace spaces from sudden rain 🌧️, harsh sunlight ☀️, and improper watering 💧 without any human intervention.
+</p>
+</header>
+
+<section id="about" class="alt">
+<h2>About TARSO 🤖</h2>
+<p class="desc">
+TARSO is designed to automate terrace protection using sensors and control systems. It continuously monitors environmental conditions and automatically performs actions such as roof movement and irrigation to ensure plant health and asset safety.
+</p>
+</section>
+
+<section id="problem">
+<h2>Problem Statement ✨</h2>
+<p class="desc">
+In modern urban areas, terrace spaces face frequent damage due to unpredictable weather. Sudden rainfall damages furniture and electronics, extreme heat harms plants, and manual watering leads to water wastage or plant dryness.
+</p>
+</section>
+
+<section id="working" class="alt">
+<h2>How TARSO Works ⚙️</h2>
+<div class="grid">
+<div class="card">🌧️ Rain sensor detects rainfall and alerts the controller.</div>
+<div class="card">🧠 Arduino processes sensor data and makes decisions.</div>
+<div class="card">🔄 Servo motor opens or closes the roof automatically.</div>
+<div class="card">💧 Soil moisture sensor activates water pump when needed.</div>
+</div>
+</section>
+
+<section id="components">
+<h2>Components Used 🔧</h2>
+<div class="grid">
+<div class="card"><b>Arduino Uno 🧠</b><br>The main controller that processes sensor data.</div>
+<div class="card"><b>Relay Module ⚡</b><br>Allows safe control of high-power devices.</div>
+<div class="card"><b>Servo Motor 🔄</b><br>Controls the movement of the roof.</div>
+<div class="card"><b>Water Pump 💧</b><br>Automates irrigation for plants.</div>
+<div class="card"><b>Rain Sensor 🌧️</b><br>Detects rainfall instantly.</div>
+<div class="card"><b>Soil Moisture Sensor 🌱</b><br>Measures soil water content.</div>
+</div>
+</section>
+
+<section id="advantages" class="alt">
+<h2>Advantages & Benefits 🌟</h2>
+<div class="grid">
+<div class="card">✅ Fully automatic operation</div>
+<div class="card">💧 Saves water and prevents wastage</div>
+<div class="card">⏱️ Saves time and effort</div>
+<div class="card">🌱 Improves plant health</div>
+<div class="card">💰 Reduces maintenance cost</div>
+</div>
+</section>
+
+<section id="impact">
+<h2>Impact & Results 🍀</h2>
+<div class="grid">
+<div class="card"><div class="counter" data-target="85">0</div>Time Saved</div>
+<div class="card"><div class="counter" data-target="60">0</div>Cost Reduced</div>
+<div class="card"><div class="counter" data-target="40">0</div>Water Efficiency</div>
+</div>
+</section>
+
+<section id="faq" class="alt">
+<h2>Frequently Asked Questions ❓</h2>
+<div class="grid">
+<div class="card faq"><h3 onclick="toggleFAQ(this)">Is TARSO fully automatic?</h3><p>Yes, TARSO works completely automatically.</p></div>
+<div class="card faq"><h3 onclick="toggleFAQ(this)">Does TARSO need internet?</h3><p>No, it works offline using sensors.</p></div>
+<div class="card faq"><h3 onclick="toggleFAQ(this)">Is it safe?</h3><p>Yes, relays provide electrical isolation.</p></div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact Us 📩</h2>
+<form action="https://formspree.io/f/mvzqgrwz" method="POST">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+<button class="submit">Send Message</button>
+</form>
+</section>
+
+<footer>
+© 2025 TARSO 🌿 Smart Terrace Automation Project
+</footer>
+
+<script>
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top<innerHeight-120){
+sec.classList.add("show");
+}
+});
+document.querySelectorAll(".counter").forEach(c=>{
+const t=+c.dataset.target;
+let n=parseInt(c.innerText)||0;
+if(n<t){c.innerText=n+1+"%";}
+});
+});
+
+function toggleFAQ(el){el.parentElement.classList.toggle("open")}
+function toggleTheme(){document.body.classList.toggle("dark")}
+</script>
+
+</body>
+</html>
